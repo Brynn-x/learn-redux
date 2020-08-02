@@ -1,0 +1,36 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@storybook/addon-actions": "^5.3.19",
+    "antd": "^4.5.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "css-loader": "^4.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "redux": "^4.0.5",
+    "regenerator-runtime": "^0.13.7",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "dev": "webpack",
+    "start": "webpack-dev-server --open --hot --host 127.0.0.1",
+    "storybook": "start-storybook"
+  },
+  "dependencies": {
+    "@storybook/react": "^5.3.19"
+  }
+}
