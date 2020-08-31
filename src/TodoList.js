@@ -1,39 +1,46 @@
 import React from "react";
-import "antd/dist/antd.css";
-import { Input, Button, List } from "antd";
-
-const defaultState = {
-  inputValue:"Write Something",
-  list:["咯咯咯～", "哈哈哈～", "呼呼呼呼～","红红火火恍恍惚惚～～～"]
-}
+import store from  './store/index';
+import {changeInputAction,addItem,deleteItem,getTodoList} from './store/actionCreators';
+import TodoListUI from "./TodoListUI";
 
 class TodoList extends React.Component {
   constructor(props){
     super(props)
-    // console.log(store.getState())
- 
+    this.state = store.getState();
+    this.storeChange = this.storeChange.bind(this)
+    store.subscribe(this.storeChange)
+  }
+  changeInput(e) {
+    const action = changeInputAction(e.target.value)
+    store.dispatch(action)
+  }
+  storeChange(){
+    this.setState(store.getState())
+  }
+  clickBtn(){
+    const action = addItem()
+    store.dispatch(action);
+  }
+  deleteItem(index){
+    const action = deleteItem(index)
+    store.dispatch(action);
+    console.log(index)
+  }
+  componentDidMount(){
+   const action = getTodoList();
+    store.dispatch(action);
   }
   render() {
     return (
-      <div style={{ margin: "10px" }}>
-        <div>
-          <Input
-            placeholder={defaultState.inputValue}
-            style={{ width: "250px", marginRight: "10px" }}
-          ></Input>
-          <Button type="primary">增加</Button>
-        </div>
-        <div style={{ width: "300px", margin: "10px" }}>
-          <List
-            bordered
-            dataSource={defaultState.list}
-            renderItem={(item) => <List.Item>{item}</List.Item>}
-          ></List>
-        </div>
-      </div>
+     <TodoListUI
+     inputValue={this.state.inputValue}
+     changeInput={this.changeInput}
+     clickBtn={this.clickBtn}
+     list={this.state.list}
+     deleteItem={this.deleteItem}
+     />
     );
   }
- 
 }
 
 export default TodoList;
